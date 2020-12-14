@@ -6,7 +6,16 @@ class User < ApplicationRecord
 
     has_many :posts,
     foreign_key: :author_id,
-    class_name: :Post 
+    class_name: :Post
+
+    has_many :subs_active_on,
+    through: :posts,
+    source: :subs
+
+    has_many :mod_subs,
+    foreign_key: :mod_id,
+    class_name: :Sub
+
 
     attr_reader :password
 
