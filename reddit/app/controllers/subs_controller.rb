@@ -1,6 +1,6 @@
 class SubController < ApplicationController
 
-
+   
     def new
         @sub = Sub.new
         render :new
@@ -12,8 +12,9 @@ class SubController < ApplicationController
 
     def edit
         # id 
+        
         @sub = Sub.find(params[:id])
-        if @sub
+        if @sub && current_user.id == @sub.mod_id
             render :edit
         else
             flash[:errors] = ["sub does not exit"]
@@ -43,7 +44,7 @@ class SubController < ApplicationController
 
     private
     def update_params
-        params.require(:sub).permit(:title,:description,:mod_id)
+        params.require(:sub).permit(:title,:description)
     end
 
 end

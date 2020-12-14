@@ -1,2 +1,16 @@
 <h1> Form for editing<h1>
 
+<form action="<%= sub_url(@sub.id)%>" method="POST">
+<input type='hidden' name='_method' value='PATCH' >
+<input type='hidden' name='authenticity_token' value='<%=form_authenticity_token%>'>
+
+<label> Title 
+<input name='sub[title]' value='<%=sub.title%>'>
+ </label>
+
+ <label> Description 
+<input name='sub[description]' value='<%=sub.description%>'>
+ </label>
+
+ <button type="submit"> Update Sub </button>
+ </form>
